@@ -1,2 +1,2 @@
 # Number-guesser-PD
-Parbaudes darbs projects
+Pārbaudes darbs projects
