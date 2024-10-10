@@ -10,15 +10,15 @@ class Number_Guesser_Game:
         self.random_value = randint(a = self.min_value, b = self.max_value) # Atgriež nejaušu veselu skaitli diapazonā [a, b], ieskaitot abus beigu punktus.
 
     def start(self) -> bool:
-        print(f"Try to guess the value from {self.min_value} to {self.max_value}")
+        print(f"Try to guess the value from {self.min_value} to {self.max_value} from {self.max_attempts} attempts")
         
         # Galvenā cilpa, kas tiks izpildīta, līdz mēģinājumu skaits pārsniedz maksimālo skaitu vai spēlētājs uzminēs pareizi
         while True:
+            self.attempt+=1
             # Ja mēģinājumu skaits ir pārsniegts, cikls beidzas
             if self.attempt > self.max_attempts:
-                print(f"You exceeded max attempts ({self.max_attempts})")
+                print(f"You exceeded max attempts ({self.max_attempts}), random number was {self.random_value}")
                 return False # spēlētājs zaudēja
-            self.attempt+=1
 
             # Cilpa, kas tiks izpildīta, līdz tiks saņemta pareizā tipa (int) vērtība
             while True:
@@ -26,14 +26,14 @@ class Number_Guesser_Game:
                     provided_value = int(input("Enter a value: "))
                     break
                 except ValueError:
-                    print("Please enter a valid integer value")
+                    print(f"Please enter a valid integer value.")
             
             
             # Pamata loģika
             if self.random_value > provided_value:
-                print("Random value > Provided value")
+                print(f"Random value > Provided value ({self.max_attempts-self.attempt} attempts left)")
             elif self.random_value < provided_value:
-                print("Random value < Provided value")
+                print(f"Random value < Provided value ({self.max_attempts-self.attempt} attempts left)")
             else:
                 print(f"You guessed right from {self.attempt} attempt.")
                 return True # Spēlētājs uzvarēja
